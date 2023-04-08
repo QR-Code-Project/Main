@@ -10,6 +10,11 @@
       "StackName": "amplify-qrcodeproject-dev-142943",
       "StackId": "arn:aws:cloudformation:us-east-1:984692653971:stack/amplify-qrcodeproject-dev-142943/55c1eb60-d63b-11ed-85fb-12bde20a2e77",
       "AmplifyAppId": "d2zt88yf9jfefd"
+    },
+    "categories": {
+      "auth": {
+        "qrcodeproject20bc6c87": {}
+      }
     }
   }
 }
