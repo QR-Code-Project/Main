@@ -2,6 +2,43 @@
   "dependencies": {
     "@aws-amplify/cli": "^11.0.3",
     "@aws-amplify/ui-react": "^4.5.1",
-    "aws-amplify": "^5.0.25"
+    "aws-amplify": "^5.0.25",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.1"
+  },
+  "main": "/index.js",
+  "devDependencies": {
+    "@babel/core": "^7.10.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^9.1.2",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "name": "QR-Code-Project",
+  "description": null,
+  "version": "0.0.0",
+  "author": "CINF301- Team 4",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": "git@github.com:QR-Code-Project/Main.git",
+  "license": "MIT",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
