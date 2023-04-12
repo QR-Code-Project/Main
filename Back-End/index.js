@@ -8,15 +8,13 @@ const app = express();
 const cors = require("cors");
 
 const teamsRoute = require("./routes/team.routes");
-const notesRoute = require("./routes/challenge.routes");
+const challengeRoute = require("./routes/challenge.routes");
 const config = require("./config");
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/auth", authRoute);
 app.use("/api", teamsRoute);
-app.use("/api", moviesRoute);
-app.use("/api", notesRoute);
+app.use("/api", challengeRoute);
 
 mongoose.connect(config.DB.URI, {
   useNewUrlParser: true,
