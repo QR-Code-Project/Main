@@ -7,10 +7,8 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 
-const authRoute = require("./routes/auth.routes");
 const teamsRoute = require("./routes/team.routes");
-const moviesRoute = require("./routes/movie.routes");
-const notesRoute = require("./routes/note.routes");
+const notesRoute = require("./routes/challenge.routes");
 const config = require("./config");
 
 app.use(cors());
