@@ -4,6 +4,10 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, 
+  Route, Redirect,} from "react-router-dom";
+import leaderboard from '../leaderboard/leaderboard'
+
 
 
 function App() {
@@ -19,6 +23,8 @@ function App() {
     axios.post('/api/username', { username })
       .then(response => console.log(response))
       .catch(error => console.log(error));
+
+    
   };
 
 
