@@ -6,9 +6,7 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import React, { useRef, useEffect } from 'react';
 
-
-function Leaderboard() {
-
+const leaderboard = () => {
 
     /*
     const ExampleTable = () => {
@@ -51,6 +49,6 @@ function Leaderboard() {
     </Table>
     </div>
   );
-}
+};
 
-export default Leaderboard;
+export default leaderboard;

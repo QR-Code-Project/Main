@@ -1,21 +1,20 @@
+
 //import './App.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useRef, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, 
-  Route, Redirect,} from "react-router-dom";
-import leaderboard from '../leaderboard/leaderboard'
+//import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
+//import leaderboard from '../leaderboard/leaderboard'
 
-
-
-function App() {
+const clue_found = () => {
 
   const teamname = useRef();
   
 
   //send a post request when backend is setup to give them the username
+  
   const handleSubmit = (event) => {
     console.log("works");
     event.preventDefault();
@@ -26,10 +25,11 @@ function App() {
 
     
   };
+  
 
 
 
-  /*
+  
   useEffect(() => {
     async function getResults() {
       const results = await axios(`https://images-api.nasa.gov/search?q=${query}`);
@@ -38,7 +38,7 @@ function App() {
     }
     getResults();
   }, [query])
-  */
+  
 
   return (
     <div className="App">
@@ -64,6 +64,6 @@ function App() {
       <h1>Clue: </h1>
     </div>
   );
-}
+};
 
-export default App;
+export default clue_found;
