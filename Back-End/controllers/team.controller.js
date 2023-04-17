@@ -32,11 +32,8 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   // Find and update the team
   team.findByIdAndUpdate(req.params.id, {
-    email: req.body.email || undefined,
-    firstName: req.body.firstName || undefined,
-    lastName: req.body.lastName || undefined,
-    address: req.body.address || undefined,
-    phone: req.body.phone || undefined,
+    teamName: req.body.teamName || undefined,
+    score: req.body.score || undefined,
   })
     .then((team) => {
       if (!team) {
