@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const Team = require("../models/team.model");
+const Challenge = require("../models/challenge.model");
 const challengeController = require("../controllers/challenge.controller");
 const middleware = require("../middlewares");
 const config = require("../config");
+
 
 router.post(
     "/challenges",
@@ -32,6 +35,21 @@ router.put(
     middleware.restrictToRoleOrSelf(config.ROLES.ADMIN),
     challengeController.update
 );
+
+router.get('/:id', async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const challenge = await Challenge.findById(id);
+  
+      if (!challenge) {
+        return res.redirect('/leaderboard');
+      }
+  
+      res.render('challenge', { challenge });
+    } catch (err) {
+      next(err);
+    }
+  });
 
 router.delete(
     "/challenges/:challengeId",

@@ -3,6 +3,8 @@
     "@aws-amplify/cli": "^11.0.3",
     "@aws-amplify/ui-react": "^4.5.1",
     "aws-amplify": "^5.0.25",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.1"
