@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import React, { useRef, useEffect } from 'react';
+import { Outlet, Link, useNavigate } from "react-router-dom";
+
 
 const leaderboard = () => {
 
@@ -30,7 +32,7 @@ const leaderboard = () => {
       ];
 
   return (
-    <div className="App">
+    <div>
       <Table striped bordered hover>
       <thead>
         <tr>

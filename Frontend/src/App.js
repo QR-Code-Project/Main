@@ -1,6 +1,8 @@
+
+/*
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import clue_found from "./components/app/clue_found";
+import clue_found from "./components/app/Cluefound";
 import leaderboard from "./components/leaderboard/leaderboard";
 
 const App = () => {
@@ -9,10 +11,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<clue_found />} />
         <Route path="/leaderboard" element={<leaderboard />} />
-        {/*<Route path="*" element={<NoPage />} /> */}
+        {/*<Route path="*" element={<NoPage />} />}
       </Routes>
     </BrowserRouter>
   );
 };
 
-export default App; 
+export default App;
+*/
