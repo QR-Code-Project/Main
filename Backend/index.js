@@ -4,10 +4,40 @@ const fs = require('fs');
 const app = express();
 const PORT = 8080;
 const cors = require('cors');
+const QRCode = require('qrcode-reader');
+const Jimp = require('jimp');
 
 app.use(cors());
 
 app.use(bodyParser.json());
+
+
+
+
+app.get('/scan', (req, res) => {
+  const url = req.query.url;
+  if (!url) {
+    res.status(400).send('QR code not found');
+    return;
+  }
+  const qrcode = new QRCode();
+  Jimp.read(url, (err, image) => {
+    if (err) {
+      res.status(500).send('Error reading QR code');
+      return;
+    }
+    qrcode.callback = (err, value) => {
+      if (err) {
+        res.status(500).send('Error decoding QR code');
+        return;
+      }
+      res.redirect(`../Frontend/src/components/app/Cluefound/${value}`);
+    };
+    qrcode.decode(image.bitmap);
+  });
+});
+
+
 
 app.post('/api/data', (req, res) => {
   console.log(req.body);
@@ -24,6 +54,7 @@ app.get('/api/getTeamData', (req, res) => {
     res.send(jsonData);
   });
 });
+
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 

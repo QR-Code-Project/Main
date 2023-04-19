@@ -1,3 +1,4 @@
+/*
 const express = require('express');
 const app = express();
 const QRCode = require('qrcode-reader');
@@ -29,3 +30,4 @@ app.get('/scan', (req, res) => {
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
+*/
