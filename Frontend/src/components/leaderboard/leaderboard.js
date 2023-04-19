@@ -50,7 +50,7 @@ const leaderboard = () => {
             {data.map((row, index) => (
               <tr key={index}>
                 <td>{row.teamname}</td>
-                <td>{row.count}</td>
+                <td>{Object.keys(row.url).length}</td>
               </tr>
             ))}
           </tbody>

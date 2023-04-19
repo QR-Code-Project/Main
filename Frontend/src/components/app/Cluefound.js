@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
 //import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
@@ -18,12 +18,28 @@ const Cluefound = () => {
 
 
   //const { value } = props.match.params;
-  const teamname = useRef();
+  //const teamname = useRef();
   //const navigate=useNavigate();
 
+  const [teamname, setTeamname] = useState('');
+  const url = "clue1";
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newTeam = { teamname, url };
+    axios.post('http://localhost:8080/api/teamData', newTeam)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+
+
+  /*
   //send a post request when backend is setup to give them the username
-  
   const handleSubmit = (event) => {
 
     console.log("works");
@@ -33,6 +49,12 @@ const Cluefound = () => {
       .then(response => onsole.log(sucess))
       .catch(error => console.log(error));
   };
+  */
+
+
+
+  
+  
   
 
 
@@ -67,8 +89,9 @@ const Cluefound = () => {
           <Form.Control
           type="text"
           id="username"
-          ref={teamname}
-          placeholder="Enter Team Name" />
+          value={teamname}
+          placeholder="Enter Team Name"
+          onChange={(event) => setTeamname(event.target.value)}/>
         </Form.Group>
 
         <Button variant="primary" type="submit" onClick={handleSubmit}>

@@ -38,13 +38,14 @@ app.get('/scan', (req, res) => {
 });
 
 
-
+//I don't think this is used, but keeping this post request here because I don't want anything breaking the day before. - Peyton
 app.post('/api/data', (req, res) => {
   console.log(req.body);
   res.send('Received JSON data');
 });
 
 
+// This gets the data from the json file and sends it to the frontend table.
 app.get('/api/getTeamData', (req, res) => {
   fs.readFile('./teams.json', 'utf8', (err, data) => {
     if (err) {
@@ -56,10 +57,59 @@ app.get('/api/getTeamData', (req, res) => {
 });
 
 
+app.post('/api/teamData', (req, res) => {
+  const { teamname, url } = req.body;
+  fs.readFile('./teams.json', 'utf8', (err, data) => {
+    if (err) {
+      throw err;
+    }
+    const jsonData = JSON.parse(data);
+    const teamIndex = jsonData.findIndex((team) => team.teamname === teamname);
+    if (teamIndex === -1) {
+      // Team doesn't exist in the file, create a new team object
+      const newTeam = { teamname, url: [url] };
+      jsonData.push(newTeam);
+    } else {
+      // Team already exists in the file, add the URL if it doesn't exist
+      const team = jsonData[teamIndex];
+      if (!team.urls.includes(url)) {
+        team.urls.push(url);
+      }
+    }
+    fs.writeFile('./teams.json', JSON.stringify(jsonData), 'utf8', (err) => {
+      if (err) {
+        throw err;
+      }
+      res.send('Team and URL added successfully!');
+    });
+  });
+});
+
+/* old teamData I had
+app.post('/api/teamData', (req, res) => {
+  const newTeam = req.body;
+  fs.readFile('./teams.json', 'utf8', (err, data) => {
+    if (err) {
+      throw err;
+    }
+    const jsonData = JSON.parse(data);
+    jsonData.push(newTeam);
+    fs.writeFile('./teams.json', JSON.stringify(jsonData), 'utf8', (err) => {
+      if (err) {
+        throw err;
+      }
+      res.send('Team added successfully!');
+    });
+  });
+});
+*/
+
+
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 
 
 
+// Below is all of the old code. I just decided to redo it all so I could hopefully have some kind of functional program to show - Peyton
 /*
 const fs = require("fs");
 const http = require("http");

@@ -1,14 +1,1 @@
-[
-    {
-      "teamname": "Team A",
-      "count": 10
-    },
-    {
-      "teamname": "Team B",
-      "count": 8
-    },
-    {
-      "teamname": "Team C",
-      "count": 12
-    }
-  ]
+[{"teamname":"TeamA","url":["clue1","clue2","clue3"]},{"teamname":"TeamB","url":["clue2","clue3"]},{"teamname":"TeamC","url":["clue3"]},{"teamname":"test","url":["clue1"]},{"teamname":"speedster","url":["clue1"]},{"teamname":"fastboyz","url":["clue1"]}]
