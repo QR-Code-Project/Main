@@ -17,6 +17,7 @@ const Cluefound = () => {
 
 
 
+  //const { value } = props.match.params;
   const teamname = useRef();
   //const navigate=useNavigate();
 
@@ -25,15 +26,12 @@ const Cluefound = () => {
   
   const handleSubmit = (event) => {
 
-    
-    /*
     console.log("works");
     event.preventDefault();
     const username = teamname.current.value;
     axios.post('/api/username', { username })
-      .then(response => navigate('/Leaderboard'))
+      .then(response => onsole.log(sucess))
       .catch(error => console.log(error));
-      */
   };
   
 
@@ -42,8 +40,8 @@ const Cluefound = () => {
   /*
   useEffect(() => {
     async function getResults() {
-      const results = await axios(`https://images-api.nasa.gov/search?q=${query}`);
-      setPhotos(results.data["collection"]["items"]);
+      const results = await axios(`http://localhost:8080/getClueData`);
+      setData(response.data);
       setLoading(true);
     }
     getResults();
@@ -51,8 +49,10 @@ const Cluefound = () => {
   */
   
   
+  
   return (
     <div >
+      {/*<p>Value: {value}</p> */}
 
 
       <Navbar bg="light" variant="light">
