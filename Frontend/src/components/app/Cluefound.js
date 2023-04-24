@@ -1,22 +1,24 @@
-
 //import './App.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-import React, { useRef, useEffect, useState } from 'react';
-import { Outlet, Link, useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import React, { useRef, useEffect, useState } from "react";
+import {
+  Outlet,
+  Link,
+  useNavigate,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 
 //import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 //import leaderboard from '../leaderboard/leaderboard'
 
 const Cluefound = () => {
-
-
-
   //const { value } = props.match.params;
   //const teamname = useRef();
   //const navigate=useNavigate();
@@ -28,12 +30,13 @@ const Cluefound = () => {
 
   const [data, setData] = useState(null);
 
-  const [teamname, setTeamname] = useState('');
+  const [teamname, setTeamname] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newTeam = { teamname, url };
-    axios.post('http://localhost:8080/api/teamData', newTeam)
+    axios
+      .post("http://localhost:8080/api/teamData", newTeam)
       .then((response) => {
         console.log(response.data);
       })
@@ -42,22 +45,22 @@ const Cluefound = () => {
       });
   };
 
-
   useEffect(() => {
-    navigate('/?DE4T1');
+    navigate("/?DE4T1");
   }, []);
 
-  
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/getClueData/${url}');
+      const response = await axios.get(
+        "http://localhost:8080/api/getClueData/${url}"
+      );
       setData(response.data);
 
       console.log(result);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchData();
@@ -86,38 +89,66 @@ const Cluefound = () => {
     getResults();
   }, [query])
   */
-  
-  
-  
+
   return (
-    <div >
+    <div>
       {/*<p>Value: {value}</p> */}
 
+      <h1>You found a clue</h1>
+      <br></br>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Enter your team name</Form.Label>
+          <Form.Control
+            type="text"
+            id="username"
+            ref={teamname}
+            placeholder="Team Name"
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+      <br></br>
+      <br></br>
+      <h1>Clue: </h1>
+      <br></br>
+      <br></br>
 
-      <Navbar bg="light" variant="light">
+      <Navbar
+        class="navbar fixed-bottom bg-body-tertiary"
+        bg="primary"
+        variant="dark"
+      >
         <Container>
           <Navbar.Brand href="/leaderboard">Leaderboard</Navbar.Brand>
         </Container>
       </Navbar>
-      <h1>You found a clue</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Team name</Form.Label>
-          <Form.Control
-          type="text"
-          id="username"
-          value={teamname}
-          placeholder="Enter Team Name"
-          onChange={(event) => setTeamname(event.target.value)}/>
-        </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Form>
-      <h1>Clue: </h1>
-      </div>  );
+      <Toast
+        className="Toast-container"
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        delay={2000}
+        autohide
+      >
+        <Toast.Header>
+          <strong className="mr-auto">Success!</strong>
+        </Toast.Header>
+        <Toast.Body>
+          Your team name has been submitted successfully and your new found clue
+          has been recorded.
+          <Button variant="primary" href="/leaderboard">
+            See leaderboard
+          </Button>
+          <Button class="btn btn-secondary btn-sm" data-bs-dismiss="toast">
+            Close
+          </Button>
+        </Toast.Body>
+      </Toast>
+    </div>
+  );
 };
 
 export default Cluefound;
-
