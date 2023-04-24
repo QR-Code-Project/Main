@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 const config = require("../config");
 
 const teamModel = mongoose.Schema({
-  teamName: {
+  password: {
     type: String,
     required: true,
   },
-  score: {
-    type: Number,
-    default: 0,
-  },
+  teamName: {
+    type: String,
+    required: true,
+  }
 });
 
 module.exports = new mongoose.model("Team", teamModel);
