@@ -38,6 +38,10 @@ app.get('/scan', (req, res) => {
 });
 
 
+
+
+
+
 //I don't think this is used, but keeping this post request here because I don't want anything breaking the day before. - Peyton
 app.post('/api/data', (req, res) => {
   console.log(req.body);
@@ -54,6 +58,31 @@ app.get('/api/getTeamData', (req, res) => {
     const jsonData = JSON.parse(data);
     res.send(jsonData);
   });
+});
+
+
+app.get('/api/getClueData', (req, res) => {
+  fs.readFile('./clues.json', 'utf8', (err, data) => {
+    if (err) {
+      throw err;
+    }
+    const jsonData = JSON.parse(data);
+    res.send(jsonData);
+  });
+});
+
+
+app.get('/api/getClueData/:url', (req, res) => {
+  const url = parseInt(req.params.url);
+
+  const data = require('./clues.json');
+  const result = data.find(item => item.url === url);
+
+  if (result) {
+    res.send(result);
+  } else {
+    res.status(404).send('Data not found');
+  }
 });
 
 

@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useRef, useEffect, useState } from 'react';
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link, useNavigate, useLocation, useSearchParams } from "react-router-dom";
 
 //import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
 //import leaderboard from '../leaderboard/leaderboard'
@@ -20,9 +20,15 @@ const Cluefound = () => {
   //const { value } = props.match.params;
   //const teamname = useRef();
   //const navigate=useNavigate();
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const url = location.pathname + searchParams.toString();
+
+  const [data, setData] = useState(null);
 
   const [teamname, setTeamname] = useState('');
-  const url = "clue1";
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,6 +43,25 @@ const Cluefound = () => {
   };
 
 
+  useEffect(() => {
+    navigate('/?DE4T1');
+  }, []);
+
+  
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/getClueData/${url}');
+      setData(response.data);
+
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [url]);
 
   /*
   //send a post request when backend is setup to give them the username
@@ -50,14 +75,6 @@ const Cluefound = () => {
       .catch(error => console.log(error));
   };
   */
-
-
-
-  
-  
-  
-
-
 
   /*
   useEffect(() => {
